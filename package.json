@@ -1,0 +1,25 @@
+{
+  "name": "excel-writer",
+  "version": "0.0.1",
+  "description": "Microsoft Excel File (.xlsx) writer",
+  "main": "lib/index.js",
+  "author": "YWak",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-mocha test/**/*.spec.ts"
+  },
+  "devDependencies": {
+    "@types/archiver": "^3.0.0",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.0.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "archiver": "^3.0.0"
+  }
+}
