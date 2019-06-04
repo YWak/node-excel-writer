@@ -9,7 +9,7 @@ const types: { [key: string]: string } = {
   boolean: "b",
 };
 
-export const escape = (s: string) => {
+export const escape = (s?: string | null) => {
   if (s == null) {
     return "";
   }
@@ -84,8 +84,7 @@ export const xml = {
           (_, index) => `
           <Override PartName="/xl/worksheets/sheet${index + 1}.xml"
               ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" />
-        `
-        )}
+        `)}
         </Types>
       `);
   },
@@ -159,7 +158,7 @@ export const xml = {
     } else if (cell.type === "string") {
       // 文字列扱い
       return `<c r="${r}" t="inlineStr">
-        <is><t>${escape(cell.value as string)}</t></is>
+        <is><t>${escape(cell.value)}</t></is>
       </c>`;
     } else {
       return `<c r="${r}"></c>`;
