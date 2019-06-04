@@ -126,15 +126,14 @@ export const xml = {
           <sheetFormatPr defaultRowHeight="15" x14ac:dyDescent="0.25"/>
           <sheetData>
           ${stringify(
-            rows.filter(r => r.length > 0),
+            rows,
             (row, rowIndex) => `
             <row r="${rowIndex + 1}">
             ${stringify(row, (cell, cellIndex) =>
               xml.cell(rowIndex, cellIndex, cell)
             )}
             </row>
-          `
-          )}
+          `)}
           </sheetData>
         </worksheet>
       `);
@@ -166,43 +165,43 @@ export const xml = {
   },
   app() {
     return trim(`
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <Properties
-            xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
-            xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
-          <Application>${PACKAGE.name}</Application>
-          <DocSecurity>0</DocSecurity>
-          <ScaleCrop>false</ScaleCrop>
-          <Company></Company>
-          <LinksUpToDate>false</LinksUpToDate>
-          <SharedDoc>false</SharedDoc>
-          <HyperlinksChanged>false</HyperlinksChanged>
-          <AppVersion>${PACKAGE.version}</AppVersion>
-        </Properties>
-      `);
+      <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <Properties
+          xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
+          xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+        <Application>${PACKAGE.name}</Application>
+        <DocSecurity>0</DocSecurity>
+        <ScaleCrop>false</ScaleCrop>
+        <Company></Company>
+        <LinksUpToDate>false</LinksUpToDate>
+        <SharedDoc>false</SharedDoc>
+        <HyperlinksChanged>false</HyperlinksChanged>
+        <AppVersion>${PACKAGE.version}</AppVersion>
+      </Properties>
+    `);
   },
   core() {
     const today = new Date().toISOString();
 
     return trim(`
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <cp:coreProperties
-            xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
-            xmlns:dc="http://purl.org/dc/elements/1.1/"
-            xmlns:dcterms="http://purl.org/dc/terms/"
-            xmlns:dcmitype="http://purl.org/dc/dcmitype/"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <dc:creator>${PACKAGE.name}</dc:creator>
-          <cp:lastModifiedBy>${PACKAGE.name}</cp:lastModifiedBy>
-          <dcterms:created xsi:type="dcterms:W3CDTF">${today}</dcterms:created>
-          <dcterms:modified xsi:type="dcterms:W3CDTF">${today}</dcterms:modified>
-        </cp:coreProperties>
-      `);
+      <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <cp:coreProperties
+          xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
+          xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:dcterms="http://purl.org/dc/terms/"
+          xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <dc:creator>${PACKAGE.name}</dc:creator>
+        <cp:lastModifiedBy>${PACKAGE.name}</cp:lastModifiedBy>
+        <dcterms:created xsi:type="dcterms:W3CDTF">${today}</dcterms:created>
+        <dcterms:modified xsi:type="dcterms:W3CDTF">${today}</dcterms:modified>
+      </cp:coreProperties>
+    `);
   },
   sharedStrings() {
     return trim(`
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-        <sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="0" uniqueCount="0"/>
-      `);
+      <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="0" uniqueCount="0"/>
+    `);
   }
 };
