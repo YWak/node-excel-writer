@@ -13,7 +13,7 @@ export interface Style {
     fill?: FillStyle;
 
     /** 値の表示スタイル */
-    format?: string;
+    format?: string | number;
 
     /** 値の横方向の配置スタイル */
     align?: HolizontalAlignment;
@@ -171,7 +171,7 @@ export class StyleManager {
     }
 }
 
-export const appendStyles = (styles: Style[]) => {
+export const mergeStyles = (styles: Style[]) => {
 
 };
 

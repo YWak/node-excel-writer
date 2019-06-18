@@ -25,6 +25,9 @@ describe("WorkbookWriter", () => {
         right: { style: "medium" }
       }
     });
+    workbook.addStyle("date", {
+      format: 31,
+    });
     const sheet1 = workbook.sheet("シート1");
     sheet1.addStyleRule("title", (r, c) => r === 0);
     sheet1.addStyleRule("title-first", (r, c) => r === 0 && c === 0);
@@ -37,7 +40,7 @@ describe("WorkbookWriter", () => {
     sheet1.nextRow();
 
     sheet1.addCellValue(1);
-    sheet1.addCellValue(new Date("2019-04-01"));
+    sheet1.addCell({ type: "date", value: new Date("2019-04-01"), styles: ["date"] });
     sheet1.addCellValue("テスト1");
     sheet1.addCell({ type: "string", formula: "=A2" });
     sheet1.nextRow();
